@@ -1,0 +1,34 @@
+{
+  "name": "lrxc-cli",
+  "version": "2.0.6",
+  "private": false,
+  "description": "wxc cli",
+  "author": "Eternallycyf",
+  "license": "MIT",
+  "keywords": [
+    "cli",
+    "wxc"
+  ],
+  "homepage": "http://wangxince.site",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eternallycyf/lrxc-cli"
+  },
+  "main": "index.js",
+  "bin": {
+    "lrxc-cli": "./bin/www"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^0.19.1",
+    "commander": "^4.1.0",
+    "consolidate": "^0.15.1",
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^7.0.3",
+    "metalsmith": "^2.3.0",
+    "ncp": "^2.0.0",
+    "ora": "^4.0.3"
+  }
+}
