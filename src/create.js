@@ -67,38 +67,38 @@ module.exports = async (projectName) => {
   if (!fs.existsSync(path.join(result, 'ask.js'))) {
     await ncp(result, path.resolve(projectName))
   } else {
-    // await new Promise((resolve, reject) => {
-    //   MetalSmith(__dirname)
-    //     .source(result)
-    //     .destination(path.resolve(projectName))
-    //     .use(async (files, metal, done) => {
-    //       const args = require(path.join(result, 'ask.js'))
-    //       const obj = await Inquirer.prompt(args)
-    //       const meta = metal.metadata()
-    //       Object.assign(meta, obj)
-    //       delete files['ask.js']
-    //       done()
-    //     })
-    //     .use((files, metal, done) => {
-    //       const obj = metal.metadata()
-    //       Reflect.ownKeys(files).forEach(async file => {
-    //         if (file.includes('js') || file.includes('json')) {
-    //           let content = files[file].contents.toString()
-    //           if (content.includes('<%')) {
-    //             content = await render(content, obj)
-    //             files[file].contents = Buffer.from(content)
-    //           }
-    //         }
-    //       })
-    //       done()
-    //     })
-    //     .build((err) => {
-    //       if (err) {
-    //         reject()
-    //       } else {
-    //         resolve()
-    //       }
-    //     })
-    // })
+    await new Promise((resolve, reject) => {
+      MetalSmith(__dirname)
+        .source(result)
+        .destination(path.resolve(projectName))
+        .use(async (files, metal, done) => {
+          const args = require(path.join(result, 'ask.js'))
+          const obj = await Inquirer.prompt(args)
+          const meta = metal.metadata()
+          Object.assign(meta, obj)
+          delete files['ask.js']
+          done()
+        })
+        .use((files, metal, done) => {
+          const obj = metal.metadata()
+          Reflect.ownKeys(files).forEach(async file => {
+            if (file.includes('js') || file.includes('json')) {
+              let content = files[file].contents.toString()
+              if (content.includes('<%')) {
+                content = await render(content, obj)
+                files[file].contents = Buffer.from(content)
+              }
+            }
+          })
+          done()
+        })
+        .build((err) => {
+          if (err) {
+            reject()
+          } else {
+            resolve()
+          }
+        })
+    })
   }
 }
