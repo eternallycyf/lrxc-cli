@@ -2,12 +2,11 @@
   "name": "lrxc-cli",
   "version": "3.0.1",
   "private": false,
-  "description": "wxc cli",
+  "description": "cli",
   "author": "Eternallycyf",
   "license": "MIT",
   "keywords": [
-    "cli",
-    "wxc"
+    "cli"
   ],
   "homepage": "http://wangxince.site",
   "repository": {

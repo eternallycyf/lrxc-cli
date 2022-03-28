@@ -65,20 +65,20 @@ module.exports = async (projectName) => {
   })
   const result = await waitFnloading(download, 'download template')(repo, tag)
   if (!fs.existsSync(path.join(result, 'ask.js'))) {
-    await ncp(result, path.resolve(projectName))
+    // await ncp(result, path.resolve(projectName))
   } else {
     await new Promise((resolve, reject) => {
       MetalSmith(__dirname)
         .source(result)
         .destination(path.resolve(projectName))
-        // .use(async (files, metal, done) => {
-        //   const args = require(path.join(result, 'ask.js'))
-        //   const obj = await Inquirer.prompt(args)
-        //   const meta = metal.metadata()
-        //   Object.assign(meta, obj)
-        //   delete files['ask.js']
-        //   done()
-        // })
+        .use(async (files, metal, done) => {
+          const args = require(path.join(result, 'ask.js'))
+          const obj = await Inquirer.prompt(args)
+          const meta = metal.metadata()
+          Object.assign(meta, obj)
+          delete files['ask.js']
+          done()
+        })
         .use((files, metal, done) => {
           const obj = metal.metadata()
           Reflect.ownKeys(files).forEach(async file => {
