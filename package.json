@@ -1,6 +1,6 @@
 {
   "name": "lrxc-cli",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "private": false,
   "description": "cli",
   "author": "Eternallycyf",
@@ -29,5 +29,8 @@
     "metalsmith": "^2.3.0",
     "ncp": "^2.0.0",
     "ora": "^4.0.3"
+  },
+  "publishConfig": {
+    "eternallycyf:registry": "https://npm.pkg.github.com"
   }
 }
