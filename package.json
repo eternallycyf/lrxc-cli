@@ -1,6 +1,6 @@
 {
   "name": "@eternallycyf/lrxc-cli",
-  "version": "4.0.6",
+  "version": "4.0.7",
   "private": false,
   "description": "cli",
   "author": "Eternallycyf",
@@ -31,6 +31,6 @@
     "ora": "^4.0.3"
   },
   "publishConfig": {
-    "@eternallycyf:registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org/"
   }
 }
